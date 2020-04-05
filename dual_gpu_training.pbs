@@ -1,5 +1,5 @@
 #PBS -S /bin/bash
-#PBS -N unsupervised_train_result
+#PBS -N submit_job
 #PBS -e errorJob.txt
 #PBS -j oe
 #PBS -l walltime=02:00:00
@@ -7,7 +7,7 @@
 #PBS -q gpuq
 ##PBS -q isiaq
 #PBS -P isia
-#PBS -m abe -M quentin.churet@student.ecp.fr
+#PBS -m abe -M jiahao.lu@student.ecp.fr
 
 # Go to the current directory 
 cd $PBS_O_WORKDIR
@@ -20,15 +20,20 @@ source activate transformers_env
 python -m torch.distributed.launch --nproc_per_node=2 ./run_squad.py \
   --model_type camembert \
   --model_name_or_path "camembert-base" \
+  --config_name ./data/configuring.json \
   --do_train \
   --do_eval \
   --do_lower_case \
-  --train_file ./data/train.json \
-  --predict_file ./data/fsquad_valid.json \
+  --train_file train.json \
+  --predict_file fsquad_valid.json \
   --per_gpu_train_batch_size 12 \
   --learning_rate 3e-5 \
   --num_train_epochs 2 \
   --max_seq_length 384 \
   --doc_stride 128 \
   --threads 24 \
-  --output_dir ./camembert_result
+  --output_dir ./camembert_result \
+  --data_dir ./data/ \
+  --overwrite_output_dir \
+  --cache_dir ./cache_download \
+  --overwrite_cache \

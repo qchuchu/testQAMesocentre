@@ -3,3 +3,5 @@ runs
 debug_squad_*
 cached_*
 squad_train_*
+cache_download
+camembert_result
