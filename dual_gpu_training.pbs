@@ -2,19 +2,19 @@
 #PBS -N unsupervised_train_result
 #PBS -e errorJob.txt
 #PBS -j oe
-#PBS -l walltime=02:00:00
+#PBS -l walltime=04:00:00
 #PBS -l select=1:ncpus=24:ngpus=2:mem=20gb
 #PBS -q gpuq
 ##PBS -q isiaq
 #PBS -P isia
-#PBS -m abe -M jiahao.lu@student.ecp.fr
+#PBS -m abe -M quentin.churet@student.ecp.fr
 
 # Go to the current directory 
 cd $PBS_O_WORKDIR
 
 # Load the same modules as for compilation 
 module load anaconda3/5.3.1
-source activate transformers_env
+source activate camembert_training_env
 
 # Run code
 python -m torch.distributed.launch --nproc_per_node=2 ./run_squad.py \
@@ -23,7 +23,7 @@ python -m torch.distributed.launch --nproc_per_node=2 ./run_squad.py \
   --do_train \
   --do_eval \
   --do_lower_case \
-  --train_file ./data/train.json \
+  --train_file ./data/fquad_13000.json \
   --predict_file ./data/fsquad_valid.json \
   --per_gpu_train_batch_size 12 \
   --learning_rate 3e-5 \
@@ -32,4 +32,4 @@ python -m torch.distributed.launch --nproc_per_node=2 ./run_squad.py \
   --doc_stride 128 \
   --threads 24 \
   --output_dir ./camembert_result \
-  --data_dir ./data/
+  --overwrite_output_dir
