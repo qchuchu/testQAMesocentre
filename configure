@@ -9,12 +9,11 @@ ln -s $WORKDIR/.conda ~/.conda
 
 # Create conda environment
 module load anaconda3/5.3.1
-conda create -y -n transformers_env pytorch numpy tqdm
-source activate transformers_env
+conda create -y -n camembert_training_env pytorch numpy tqdm
+source activate camembert_training_env
 
 # Install transformers
 git clone https://github.com/huggingface/transformers
 cd transformers
 pip install .
 pip install -r ./examples/requirements.txt
-
