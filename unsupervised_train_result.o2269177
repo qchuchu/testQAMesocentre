@@ -1,0 +1,73 @@
+04/03/2020 16:05:32 - WARNING - __main__ -   Process rank: 1, device: cuda:1, n_gpu: 1, distributed training: True, 16-bits training: False
+04/03/2020 16:05:32 - WARNING - __main__ -   Process rank: 0, device: cuda:0, n_gpu: 1, distributed training: True, 16-bits training: False
+04/03/2020 16:05:33 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/camembert-base-config.json from cache at /home/isia04/.cache/torch/transformers/5152a7b8b97da26abdad9b3babb600e77c52a002331ea52a9eaf96ea8b31ef8f.8169c2f4436e6dd4a18942712e8a9ef2a4876dfaa572fb42ae91526a3fe77264
+04/03/2020 16:05:33 - INFO - transformers.configuration_utils -   Model config CamembertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "CamembertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 5,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 6,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "camembert",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 32005
+}
+
+04/03/2020 16:05:34 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/camembert-base-sentencepiece.bpe.model from cache at /home/isia04/.cache/torch/transformers/3715e3a4a2de48834619b2a6f48979e13ddff5cabfb1f3409db689f9ce3bb98f.28d30f926f545047fc59da64289371eef0fbdc0764ce9ec56f808a646fcfec59
+04/03/2020 16:05:34 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/camembert-base-pytorch_model.bin from cache at /home/isia04/.cache/torch/transformers/7bc5bbd9573dd6edc4d3bf50c983c7e6d09d8384cf277f320a1c3c80f0b1379a.b064d06bc988544d63f563021dbacad6eda41bd45190b6186beb8ebbc959013c
+04/03/2020 16:05:49 - INFO - transformers.modeling_utils -   Weights of CamembertForQuestionAnswering not initialized from pretrained model: ['qa_outputs.weight', 'qa_outputs.bias']
+04/03/2020 16:05:49 - INFO - transformers.modeling_utils -   Weights from pretrained model not used in CamembertForQuestionAnswering: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "./run_squad.py", line 860, in <module>
+  File "./run_squad.py", line 860, in <module>
+        main()main()
+
+  File "./run_squad.py", line 779, in main
+  File "./run_squad.py", line 757, in main
+        torch.distributed.barrier()torch.distributed.barrier()
+
+  File "/home/isia04/.conda/envs/transformers_env/lib/python3.7/site-packages/torch/distributed/distributed_c10d.py", line 1489, in barrier
+  File "/home/isia04/.conda/envs/transformers_env/lib/python3.7/site-packages/torch/distributed/distributed_c10d.py", line 1489, in barrier
+    work = _default_pg.barrier()    
+work = _default_pg.barrier()RuntimeError
+: RuntimeErrorNCCL error in: /pytorch/torch/lib/c10d/ProcessGroupNCCL.cpp:30, unhandled cuda error, NCCL version 2.4.8: 
+NCCL error in: /pytorch/torch/lib/c10d/ProcessGroupNCCL.cpp:30, unhandled cuda error, NCCL version 2.4.8
